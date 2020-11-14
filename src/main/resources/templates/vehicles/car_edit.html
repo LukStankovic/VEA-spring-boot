@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/main_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Upravit auto</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+	<form th:action="@{/car/edit/{id}(id=${car.id})}" th:object="${car}" method="post">
+		Výrobce: <input type="text" th:field="*{manufacturer}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('manufacturer')}" th:text="${err}" />
+		</ul>
+		
+		Model: <input type="text" th:field="*{model}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('model')}" th:text="${err}" />
+		</ul>
+		
+		Rok: <input type="number" step="1" th:field="*{year}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('year')}" th:text="${err}" />
+		</ul>
+		
+		SPZ: <input type="text" step="1" th:field="*{registrationPlate}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('registrationPlate')}" th:text="${err}" />
+		</ul>
+		
+		Počet pasažérů: <input type="number" step="1" th:field="*{numberOfPassengers}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('numberOfPassengers')}" th:text="${err}" />
+		</ul>
+		
+		Velikost kufru: <input type="number" step="1" th:field="*{trunkSize}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('trunkSize')}" th:text="${err}" />
+		</ul>
+		
+		<input type="submit" value="Uložit"/>
+	</form>
+	</div>
+</body>
+</html>

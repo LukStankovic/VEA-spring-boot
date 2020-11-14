@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/main_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Zaměstnanci</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+		<a href="/employee/create" class="btn btn-primary" role="button">Nový zaměstnanec</a>
+		<table class="table table-hover table-striped">
+			<tr>
+				<th>ID</th>
+				<th>Jméno</th>
+				<th>Příjmení</th>
+				<th>Akce</th>
+			</tr>
+			<tr th:each="employee : ${employees}">
+				<td th:text="${employee.id}" />
+				<td th:text="${employee.name}" />
+				<td th:text="${employee.surname}" />
+				<td>
+					<a th:href="@{/employee/edit/{id}(id=${employee.id})}"><i class="fa fa-edit"></i></a>
+					<a th:href="@{/employee/remove/{id}(id=${employee.id})}"><i class="fa fa-trash"></i></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

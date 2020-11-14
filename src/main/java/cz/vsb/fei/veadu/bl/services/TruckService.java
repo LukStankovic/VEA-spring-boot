@@ -2,37 +2,37 @@ package cz.vsb.fei.veadu.bl.services;
 
 import java.util.List;
 
-import cz.vsb.fei.veadu.bl.dao.garage.GarageDao;
-import cz.vsb.fei.veadu.entities.Garage;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cz.vsb.fei.veadu.bl.dao.vehicles.TruckDao;
+import cz.vsb.fei.veadu.entities.vehicles.Truck;
+
 @Service
 @Transactional
-public class GarageService {
+public class TruckService {
 
     @Autowired
-    private GarageDao dao;
+    private TruckDao dao;
 
-    public GarageService() {
+    public TruckService() {
         super();
     }
 
-    public void create(final Garage entity) {
+    public void create(final Truck entity) {
         dao.create(entity);
     }
     
-    public void edit(final Garage entity) {
+    public void edit(final Truck entity) {
 		dao.update(entity);
     }
 
-    public Garage findOne(final long id) {
+    public Truck findOne(final long id) {
         return dao.findOne(id);
     }
 
-    public List<Garage> findAll() {
+    public List<Truck> findAll() {
         return dao.findAll();
     }
     

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/main_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Nové auto</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+	<form th:action="@{/truck/create}" th:object="${truck}" method="post">
+		Výrobce: <input type="text" th:field="*{manufacturer}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('manufacturer')}" th:text="${err}" />
+		</ul>
+		
+		Model: <input type="text" th:field="*{model}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('model')}" th:text="${err}" />
+		</ul>
+		
+		Rok: <input type="number" step="1" th:field="*{year}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('year')}" th:text="${err}" />
+		</ul>
+		
+		SPZ: <input type="text" step="1" th:field="*{registrationPlate}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('registrationPlate')}" th:text="${err}" />
+		</ul>
+		
+		Maximální zatížení: <input type="number" step="1" th:field="*{maxTow}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('maxTow')}" th:text="${err}" />
+		</ul>
+		
+		Počet náprav: <input type="number" step="1" th:field="*{axleCount}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('axleCount')}" th:text="${err}" />
+		</ul>
+		
+		<input type="submit" value="Uložit"/>
+	</form>
+	</div>
+</body>
+</html>

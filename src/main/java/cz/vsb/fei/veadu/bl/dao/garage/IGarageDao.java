@@ -1,4 +1,4 @@
-package cz.vsb.fei.veadu.bl.dao;
+package cz.vsb.fei.veadu.bl.dao.garage;
 
 import java.util.List;
 

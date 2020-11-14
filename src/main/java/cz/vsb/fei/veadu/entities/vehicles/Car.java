@@ -1,7 +1,16 @@
 package cz.vsb.fei.veadu.entities.vehicles;
 
+import javax.persistence.Entity;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+@Entity
 public class Car extends Vehicle {
 	
+	private static final long serialVersionUID = 1L;
+	
+	@Min(value=1)
+	@Max(value=9)
 	private int numberOfPassengers;
 	
 	private double trunkSize;

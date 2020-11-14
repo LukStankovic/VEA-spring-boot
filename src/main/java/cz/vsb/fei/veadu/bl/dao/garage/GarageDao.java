@@ -1,5 +1,6 @@
-package cz.vsb.fei.veadu.bl.dao;
+package cz.vsb.fei.veadu.bl.dao.garage;
 
+import cz.vsb.fei.veadu.bl.dao.AbstractDao;
 import cz.vsb.fei.veadu.entities.Garage;
 import org.springframework.stereotype.Repository;
 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/main_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Úprava zaměstnance</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+	<form th:action="@{/employee/edit/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+		Jméno: <input type="text" th:field="*{name}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
+		</ul>
+		Příjmení: <input type="text" th:field="*{surname}"/>
+		<ul>
+		  <li th:each="err : ${#fields.errors('surname')}" th:text="${err}" />
+		</ul>
+		<input type="submit" value="Uložit"/>
+	</form>
+	</div>
+</body>
+</html>
