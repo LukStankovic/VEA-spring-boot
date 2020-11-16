@@ -17,6 +17,23 @@
 		</ul>
 		<input type="submit" value="Uložit"/>
 	</form>
-	</div>
+	
+	<table class="table table-hover table-striped">
+		<tr>
+			<th>ID</th>
+			<th>Značka</th>
+			<th>Model</th>
+			<th>Rok výroby</th>
+			<th>SPZ</th>
+		</tr>
+		<tr th:each="vehicle : ${vehicles}">
+			<td th:text="${vehicle.id}" />
+			<td th:text="${vehicle.manufacturer}" />
+			<td th:text="${vehicle.model}" />
+			<td th:text="${vehicle.year}" />
+			<td th:text="${vehicle.registrationPlate}" />
+		</tr>
+	</table>
+</div>
 </body>
 </html>

@@ -19,6 +19,7 @@
 				<th>Pasažérů</th>
 				<th>Kufr (l)</th>
 				<th>Zodpovědná osoba</th>
+				<th>Garáž</th>
 				<th>Akce</th>
 			</tr>
 			<tr th:each="car : ${cars}">
@@ -29,7 +30,8 @@
 				<td th:text="${car.registrationPlate}" />
 				<td th:text="${car.numberOfPassengers}" />
 				<td th:text="${car.trunkSize}" />
-				<td th:text="${car.trunkSize}" />
+				<td th:text="${car.owner.name + ' ' + car.owner.surname}" />
+				<td th:text="${car.garage.name + ' - ' + car.garage.city}" />
 				<td>
 					<a th:href="@{/car/edit/{id}(id=${car.id})}"><i class="fa fa-edit"></i></a>
 					<a th:href="@{/car/remove/{id}(id=${car.id})}"><i class="fa fa-trash"></i></a>
@@ -48,6 +50,7 @@
 				<th>Maximální zatížení</th>
 				<th>Počet náprav</th>
 				<th>Zodpovědná osoba</th>
+				<th>Garáž</th>
 				<th>Akce</th>
 			</tr>
 			<tr th:each="truck : ${trucks}">
@@ -58,7 +61,8 @@
 				<td th:text="${truck.registrationPlate}" />
 				<td th:text="${truck.maxTow}" />
 				<td th:text="${truck.axleCount}" />
-				<td th:text="${truck.axleCount}" />
+				<td th:text="${truck.owner.name + ' ' + truck.owner.surname}" />
+				<td th:text="${truck.garage.name + ' - ' + truck.garage.city}" />
 				<td>
 					<a th:href="@{/truck/edit/{id}(id=${truck.id})}"><i class="fa fa-edit"></i></a>
 					<a th:href="@{/truck/remove/{id}(id=${truck.id})}"><i class="fa fa-trash"></i></a>

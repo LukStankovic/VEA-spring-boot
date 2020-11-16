@@ -16,6 +16,9 @@ public class CarService {
     @Autowired
     private CarDao dao;
 
+    @Autowired
+    private GarageService garageService;
+    
     public CarService() {
         super();
     }

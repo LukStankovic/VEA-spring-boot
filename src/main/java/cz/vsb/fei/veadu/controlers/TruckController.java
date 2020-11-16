@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import cz.vsb.fei.veadu.bl.services.EmployeeService;
+import cz.vsb.fei.veadu.bl.services.GarageService;
 import cz.vsb.fei.veadu.bl.services.TruckService;
 import cz.vsb.fei.veadu.entities.vehicles.Truck;
 import javassist.NotFoundException;
@@ -19,6 +21,13 @@ public class TruckController {
 	
 	@Autowired
 	TruckService truckService;
+	
+	@Autowired
+	EmployeeService employeeService;
+
+	@Autowired
+	GarageService garageService;
+
 
 	@GetMapping("/truck/edit/{id}")
 	public String truckEdit(@PathVariable long id, Model model) throws NotFoundException {
@@ -31,6 +40,8 @@ public class TruckController {
 		}
 		
 		model.addAttribute("truck", truck);
+		model.addAttribute("employees", employeeService.findAll());
+		model.addAttribute("garages", garageService.findAll());
 		
 		return "vehicles/truck_edit";
 	}
@@ -62,6 +73,8 @@ public class TruckController {
 	@GetMapping("/truck/create")
 	public String truckCreate(Model model) {
 		model.addAttribute("truck", new Truck());
+		model.addAttribute("employees", employeeService.findAll());
+		model.addAttribute("garages", garageService.findAll());
 		
 		return "vehicles/truck_create";
 	}

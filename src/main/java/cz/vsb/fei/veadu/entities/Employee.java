@@ -1,12 +1,17 @@
 package cz.vsb.fei.veadu.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
+
+import cz.vsb.fei.veadu.entities.vehicles.Vehicle;
 
 @Entity
 public class Employee implements Serializable {
@@ -23,6 +28,9 @@ public class Employee implements Serializable {
 	@NotEmpty
 	private String surname;
 	
+	@OneToMany(mappedBy="owner")
+	private List<Vehicle> vehicles = new ArrayList<>();;
+
 	public Employee() {
 		super();
 	}
@@ -55,5 +63,27 @@ public class Employee implements Serializable {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+	
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
+	}
+
+	public void addVehicle(Vehicle vehicle) {
+		if (!vehicles.contains(vehicle)) {
+			this.vehicles.add(vehicle);
+			vehicle.setOwner(this);
+		}
+	}
+	
+	public void removeVehicle(Vehicle vehicle) {
+		if (vehicles.contains(vehicle)) {
+			this.vehicles.remove(vehicle);
+			vehicle.setOwner(null);
+		}
 	}
 }

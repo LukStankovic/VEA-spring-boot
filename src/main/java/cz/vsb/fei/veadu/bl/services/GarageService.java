@@ -15,7 +15,10 @@ public class GarageService {
 
     @Autowired
     private GarageDao dao;
-
+    
+    @Autowired
+    private VehicleService vehicleService;
+    
     public GarageService() {
         super();
     }
@@ -29,7 +32,9 @@ public class GarageService {
     }
 
     public Garage findOne(final long id) {
-        return dao.findOne(id);
+    	Garage garage = dao.findOne(id);
+        	
+    	return garage;
     }
 
     public List<Garage> findAll() {

@@ -37,6 +37,24 @@
 		  <li th:each="err : ${#fields.errors('axleCount')}" th:text="${err}" />
 		</ul>
 		
+		Majitel:
+		<ul>
+		  <li th:each="err : ${#fields.errors('owner')}" th:text="${err}" />
+		</ul>
+		<select name="owner">
+			<option th:each="e : ${employees}" th:value="${e.id}" th:text="${e.name + ' ' + e.surname}"></option>
+		</select>
+		
+	
+		Garáž:
+		<ul>
+		  <li th:each="err : ${#fields.errors('garage')}" th:text="${err}" />
+		</ul>
+		<select name="garage">
+			<option th:each="g : ${garages}" th:value="${g.id}" th:text="${g.name + ' - ' + g.city}"></option>
+		</select>
+		
+		
 		<input type="submit" value="Uložit"/>
 	</form>
 	</div>

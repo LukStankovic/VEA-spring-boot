@@ -1,17 +1,14 @@
 package cz.vsb.fei.veadu.entities.vehicles;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Truck extends Vehicle {
 
 	private static final long serialVersionUID = 1L;
 	
-	@NotEmpty
 	private double maxTow;
 
-	@NotEmpty
 	private int axleCount;
 
 	public Truck() {

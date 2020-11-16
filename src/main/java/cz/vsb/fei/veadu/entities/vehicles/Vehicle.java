@@ -8,8 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+
+import cz.vsb.fei.veadu.entities.Employee;
+import cz.vsb.fei.veadu.entities.Garage;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -31,7 +35,12 @@ public abstract class Vehicle  implements Serializable {
 	
 	@NotEmpty
 	private String registrationPlate;
-
+	
+	@ManyToOne
+	private Employee owner;
+	
+	@ManyToOne
+	private Garage garage;
 	
 	public Vehicle() {
 		super();
@@ -83,5 +92,23 @@ public abstract class Vehicle  implements Serializable {
 
 	public void setRegistrationPlate(String registrationPlate) {
 		this.registrationPlate = registrationPlate;
+	}
+
+	public Employee getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Employee owner) {
+		owner.addVehicle(this);
+		this.owner = owner;
+	}
+
+	public Garage getGarage() {
+		return garage;
+	}
+
+	public void setGarage(Garage garage) {
+		garage.parkVehicle(this);
+		this.garage = garage;
 	}
 }
