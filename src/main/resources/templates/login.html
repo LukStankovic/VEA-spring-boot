@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	Message:	<p th:text="${session?.SPRING_SECURITY_LAST_EXCEPTION?.message}">Error java.lang.NullPointerException</p>
+	<form name='loginForm' action="/login" method='POST'>
+
+		<table>
+			<tr>
+				<td>User:</td>
+				<td><input type='text' id="username" name='username' value='' /></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type='password'  id="password" name="password" /></td>
+			</tr>
+			<tr>
+				<td colspan='2'><input name="submit" type="submit"
+					value="Login" /></td>
+			</tr>
+		</table>
+
+		<input type="hidden" th:name="${_csrf.parameterName}"
+			th:value="${_csrf.token}" />
+
+	</form>
+
+</body>
+</html>

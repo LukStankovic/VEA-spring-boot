@@ -1,6 +1,7 @@
 package cz.vsb.fei.veadu.controlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +37,17 @@ public class HomepageController {
 		return "index";
 	}
 	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 	
+	@GetMapping("/403")
+	public String error() {
+		return "403";
+	}
+	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/build/demo")
 	public String buildDemo(Model model) {
 		

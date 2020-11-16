@@ -3,6 +3,7 @@ package cz.vsb.fei.veadu.controlers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +31,7 @@ public class GarageController {
 		return "garage_list";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/garage/edit/{id}")
 	public String grageEdit(@PathVariable long id, Model model) throws NotFoundException {
 		if (id <= 0) {
@@ -45,6 +47,7 @@ public class GarageController {
 		return "garage_edit";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@PostMapping("/garage/edit/{id}")
 	public String grageCreateSave(@PathVariable long id, @ModelAttribute @Validated Garage garage, BindingResult garageResult, Model model) {
 		if(garageResult.hasErrors()) {
@@ -58,7 +61,7 @@ public class GarageController {
 		return "redirect:/garage/list";
 	}
 
-	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/garage/remove/{id}")
 	public String grageCreate(@PathVariable long id, Model model) throws NotFoundException {
 		if (id <= 0) {
@@ -69,6 +72,7 @@ public class GarageController {
 		return "redirect:/garage/list";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/garage/create")
 	public String grageCreate(Model model) {
 		model.addAttribute("garage", new Garage());
@@ -76,6 +80,7 @@ public class GarageController {
 		return "garage_create";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@PostMapping("/garage/create")
 	public String grageCreateSave(@ModelAttribute @Validated Garage garage, BindingResult garageResult, Model model) {
 		if(garageResult.hasErrors()) {

@@ -21,6 +21,8 @@ public class VehicleController {
 	@Autowired
 	TruckService truckService;
 	
+	
+	
 	@GetMapping("/vehicle/list")
 	public String vehiclesList(Model model) {
 		

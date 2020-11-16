@@ -1,6 +1,7 @@
 package cz.vsb.fei.veadu.controlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +29,7 @@ public class CarController {
 	@Autowired
 	GarageService garageService;
 
-	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/car/edit/{id}")
 	public String carEdit(@PathVariable long id, Model model) throws NotFoundException {
 		if (id <= 0) {
@@ -46,6 +47,7 @@ public class CarController {
 		return "vehicles/car_edit";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@PostMapping("/car/edit/{id}")
 	public String carCreateSave(@PathVariable long id, @ModelAttribute @Validated Car car, BindingResult carResult, Model model) {
 		if(carResult.hasErrors()) {
@@ -59,7 +61,7 @@ public class CarController {
 		return "redirect:/vehicle/list";
 	}
 
-	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/car/remove/{id}")
 	public String carCreate(@PathVariable long id, Model model) throws NotFoundException {
 		if (id <= 0) {
@@ -70,6 +72,7 @@ public class CarController {
 		return "redirect:/vehicle/list";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/car/create")
 	public String carCreate(Model model) {
 		model.addAttribute("car", new Car());
@@ -79,6 +82,7 @@ public class CarController {
 		return "vehicles/car_create";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@PostMapping("/car/create")
 	public String carCreateSave(@ModelAttribute @Validated Car car, BindingResult carResult, Model model) {
 		if(carResult.hasErrors()) {

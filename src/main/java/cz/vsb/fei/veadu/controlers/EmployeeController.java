@@ -3,6 +3,7 @@ package cz.vsb.fei.veadu.controlers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +32,7 @@ public class EmployeeController {
 		return "employee/employee_list";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/employee/edit/{id}")
 	public String employeeEdit(@PathVariable long id, Model model) throws NotFoundException {
 		if (id <= 0) {
@@ -46,6 +48,7 @@ public class EmployeeController {
 		return "employee/employee_edit";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@PostMapping("/employee/edit/{id}")
 	public String grageCreateSave(@PathVariable long id, @ModelAttribute @Validated Employee employee, BindingResult employeeResult, Model model) {
 		if(employeeResult.hasErrors()) {
@@ -60,6 +63,7 @@ public class EmployeeController {
 	}
 
 	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/employee/remove/{id}")
 	public String grageCreate(@PathVariable long id, Model model) throws NotFoundException {
 		if (id <= 0) {
@@ -70,6 +74,7 @@ public class EmployeeController {
 		return "redirect:/employee/list";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/employee/create")
 	public String grageCreate(Model model) {
 		model.addAttribute("employee", new Employee());
@@ -77,6 +82,7 @@ public class EmployeeController {
 		return "employee/employee_create";
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@PostMapping("/employee/create")
 	public String grageCreateSave(@ModelAttribute @Validated Employee garage, BindingResult employeeResult, Model model) {
 		if(employeeResult.hasErrors()) {

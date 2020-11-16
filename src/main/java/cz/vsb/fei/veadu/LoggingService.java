@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-public class AOPTest {
+public class LoggingService {
 
 	
 	@Before("execution(* cz.vsb.fei.vealab01.controlers.*.*(..))")
