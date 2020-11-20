@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import cz.vsb.fei.veadu.entities.vehicles.Vehicle;
 
 @Entity
@@ -28,6 +30,7 @@ public class Garage implements Serializable {
 	@NotEmpty
 	private String city;
 	
+	@JsonIgnoreProperties({"owner", "garage"})
 	@OneToMany(mappedBy = "garage")
 	private List<Vehicle> parkedVehicles = new ArrayList<>();
 	

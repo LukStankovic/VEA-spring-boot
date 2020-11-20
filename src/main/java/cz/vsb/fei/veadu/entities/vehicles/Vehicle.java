@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import cz.vsb.fei.veadu.entities.Employee;
 import cz.vsb.fei.veadu.entities.Garage;
 
@@ -36,9 +38,11 @@ public abstract class Vehicle  implements Serializable {
 	@NotEmpty
 	private String registrationPlate;
 	
+	@JsonIgnoreProperties({"vehicles"})
 	@ManyToOne
 	private Employee owner;
 	
+	@JsonIgnoreProperties({"parkedVehicles"})
 	@ManyToOne
 	private Garage garage;
 	

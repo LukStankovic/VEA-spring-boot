@@ -92,6 +92,6 @@ public class HomepageController {
 		scania.setOwner(employeeService.findOne(1));
 		truckService.create(scania);
 		
-		return "redirect:/";
+		return "index";
 	}
 }
